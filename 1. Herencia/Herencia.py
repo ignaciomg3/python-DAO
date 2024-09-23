@@ -7,6 +7,8 @@ The code also defines an abstract class `Interface` with an abstract method `met
 The class `ClaseImplementaInterface` is a concrete implementation of the `Interface` class. It overrides the `metodo_abstracto()` method and prints a message indicating that it is implementing the abstract method.
 Finally, an instance of `Persona` and `Empleado` is created and their methods are called to demonstrate the functionality of the classes.
 """
+from clases import Persona; 
+from clases import Empleado;
 
 # Ejemplo de uso
 # Creamos una instancia de la clase Persona con el nombre "Juan" y la edad 30

@@ -1,4 +1,6 @@
 import csv;
+import os
+
 
 
 from clases import Mantenimiento;
@@ -7,16 +9,17 @@ mantenimientos = []
 def cargar_mantenimientos():
     # Define la función cargar_mantenimientos que no recibe parámetros y no retorna nada.
     
-    with open('mantenimientos.csv', mode='r', encoding='utf-8', newline='') as file:
+    with open('./Primer_Parcial_Fabrica/mantenimientos.csv', mode='r', encoding='utf-8', newline='') as file:
         # Abre el archivo 'mantenimientos.csv' en modo lectura ('r') con codificación 'utf-8'.
         # El bloque 'with' asegura que el archivo se cierre automáticamente después de ser usado.
         
-        csv_reader = csv.reader(file,delimiter=',')
+        csv_reader = csv.reader(file)
         # Crea un lector de CSV que iterará sobre las líneas del archivo.
         
         for row in csv_reader:
             # Itera sobre cada fila del archivo CSV.
-            
+            print(row)
+
             id_mantenimiento, fecha, nombre, costo, id_tecnico, horas = row
             # Desempaqueta los valores de la fila en variables individuales.
 
@@ -31,6 +34,12 @@ def cargar_mantenimientos():
 
 def main():
     cargar_mantenimientos()
+    print("Hola Mundo");
+
+    # Obtener y mostrar el directorio actual
+    directorio_actual = os.getcwd()
+    print(f"Directorio actual:", directorio_actual)
+
 
 if __name__ == "__main__":
     main()  
