@@ -24,6 +24,7 @@ class Preventivo(Mantenimiento):
         
         self.resultado = resultado  # 1, 2, or 3
         self.importeTecnico = importeTecnico  # float
+        
 
     def mostrar(self):
         super().mostrar()
