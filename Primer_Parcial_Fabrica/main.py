@@ -30,7 +30,6 @@ def main():
             #print(row)  # Aquí puedes procesar cada fila como necesites
             id_mantenimiento, fecha, nombre, importe, res_u_horas, importe_tecnico = row
 
-            
             # Desempaqueta los valores de la fila en variables individuales.
 
             print(f"ID: {id_mantenimiento}, Fecha: {fecha}, Nombre: {nombre}, Costo: {importe}, resultado u horas: {res_u_horas}, importe_tecnico: {importe_tecnico}")
@@ -54,8 +53,6 @@ def main():
             print("Agregar a la lista..")
             listaMantenimientos.append(nuevoMantenimiento)
             print("mantenimiento agregado")
-
-            #menuOpciones()
 
     menuOpciones()
 
