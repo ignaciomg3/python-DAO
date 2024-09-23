@@ -35,15 +35,15 @@ def leerArchivo():
 
             #print(f"ID: {id_mantenimiento}, Fecha: {fecha}, Nombre: {nombre}, Costo: {importe}, resultado u horas: {res_u_horas}, importe_tecnico: {importe_tecnico}")
             
-            if id_mantenimiento == "1":
-                print("Preventivo ")
-            elif id_mantenimiento == "2":
-                print("Correctivo") 
-            else:
-                print("Error")
+            # if id_mantenimiento == "1":
+            #     print("Preventivo ")
+            # elif id_mantenimiento == "2":
+            #     print("Correctivo") 
+            # else:
+            #     print("Error")
 
             iteracion = csv_reader.line_num
-            print(f"Número de iteración: {iteracion}")
+            #print(f"Número de iteración: {iteracion}")
 
             # Crear una instancia de la clase importada y ejecutar alguna función
             if id_mantenimiento == '1':
@@ -51,13 +51,14 @@ def leerArchivo():
             else:
                 nuevoMantenimiento = Correctivo(id_mantenimiento, fecha, nombre, importe, res_u_horas, importe_tecnico)
             
-            print("Agregar a la lista..")
+            #print("Agregar a la lista..")
             listaMantenimientos.append(nuevoMantenimiento)
-            print("mantenimiento agregado")
+            #print("mantenimiento agregado")
 
   # Asegúrate de reemplazar 'some_module' y 'SomeClass' con los nombres correctos
 
 def menuOpciones():
+    print(" ")
     print("**************************** MENÚ DE OPCIONES ****************************")
     print("a Suma de gastos")
     print("b Cantidad de mantenimientos caros")
@@ -69,14 +70,18 @@ def menuOpciones():
     if opcion == "a":
         print("Opción a")
         sumaGastos()
+        menuOpciones()
 
     elif opcion == "b":
         print("Opción b")
         mantenimientosCaros()
+        menuOpciones()
+        
     
     elif opcion == "c":
         print("Opción c")   
         roturaMasLarga()
+        menuOpciones()
     
     else:
         print("Saliendo del programa...")
@@ -97,24 +102,40 @@ def sumaGastos():
     print(f"El total abonado por todo concepto en todos los mantenimientos registrados es: {total}")
 
 def mantenimientosCaros():
-    total = 0
+    cantMantenimientosCaros = 0
+    mantBaratos = 0
     for mantenimiento in listaMantenimientos:
-        total += mantenimiento.importe
-    if total > 10000:
-        print(f"El total de mantenimientos de cualquier tipo que hayan tenido un gasto total de más de $10.000 es: {total}")
+        if (int(mantenimiento.importe) > 10000):
+            cantMantenimientosCaros += 1
+        else:
+            mantBaratos += 1
+    print(f"Mantenimientos de más de $10.000: {cantMantenimientosCaros}")
+    print(f"Mantenimientos menores a $10.000: {mantBaratos}")
 
 def roturaMasLarga():
     max_horas = 0
+    esCorrectivo = False
     for mantenimiento in listaMantenimientos:
         if isinstance(mantenimiento, Correctivo):
-            if mantenimiento.horas > max_horas:
+            esCorrectivo = True
+            print("Es Correctivo") 
+            print(f"Horas: ", mantenimiento.horas) 
+            print(f"Horas Max: ", max_horas) 
+             # Imprimir el tipo de dato de mantenimiento.horas
+            print(f"El tipo de dato de mantenimiento.horas es: {type(mantenimiento.horas)}")
+            horasMant = int(mantenimiento.horas)
+            if horasMant > max_horas:
                 max_horas = mantenimiento.horas
                 fecha = mantenimiento.fecha
                 operario = mantenimiento.operario
-    print(f"La fecha y el nombre del operario del mantenimiento correctivo de mayor duración es: {fecha}, {operario}")
+            else:
+                print("no es mayor")
+        
+        else:
+            print("No es Correctivo")
 
-
-
+    print(f"Cantidad maxima de horas: {mantenimiento.horas}, La fecha y el nombre del operario del mantenimiento, correctivo de mayor duración es: {fecha}, {operario}")
+ 
     
 if __name__ == "__main__":
     main()
