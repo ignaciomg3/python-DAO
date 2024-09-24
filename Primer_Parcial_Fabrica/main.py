@@ -113,19 +113,29 @@ def mantenimientosCaros():
     print(f"Mantenimientos menores a $10.000: {mantBaratos}")
 
 def roturaMasLarga():
+    
     max_horas = 0
+    type(max_horas)
+    print(f"1 El tipo de dato de Max_Horas es: {type(max_horas)}")
+    print(f"2 El valor de Max_Horas es: {max_horas}")
+
     esCorrectivo = False
-    for mantenimiento in listaMantenimientos:
+    for i, mantenimiento in enumerate(listaMantenimientos):
+        print(f"Iteración {i} ")
         if isinstance(mantenimiento, Correctivo):
             esCorrectivo = True
             print("Es Correctivo") 
-            print(f"Horas: ", mantenimiento.horas) 
-            print(f"Horas Max: ", max_horas) 
+            #print(f"Horas: ", mantenimiento.horas) 
+            #print(f"Horas Max: ", max_horas) 
              # Imprimir el tipo de dato de mantenimiento.horas
-            print(f"El tipo de dato de mantenimiento.horas es: {type(mantenimiento.horas)}")
+            print(f"3 El tipo de dato de mantenimiento.horas es: {type(mantenimiento.horas)}")
             horasMant = int(mantenimiento.horas)
+            print(f"4 El tipo de dato de HorasMant es: {type(horasMant)}")
+            print(f"5 El tipo de dato de Max_Horas es: {type(max_horas)}")
+            print(f"*****************************************************")
+ 
             if horasMant > max_horas:
-                max_horas = mantenimiento.horas
+                max_horas = horasMant
                 fecha = mantenimiento.fecha
                 operario = mantenimiento.operario
             else:
@@ -133,8 +143,10 @@ def roturaMasLarga():
         
         else:
             print("No es Correctivo")
+            print(f"{mantenimiento.tipoM}, es preventivo.")
+            print(f"*********************")
 
-    print(f"Cantidad maxima de horas: {mantenimiento.horas}, La fecha y el nombre del operario del mantenimiento, correctivo de mayor duración es: {fecha}, {operario}")
+    print(f"Cantidad maxima de horas: {max_horas}, La fecha {fecha} y el nombre del operario {operario} ")
  
     
 if __name__ == "__main__":
