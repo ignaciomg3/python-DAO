@@ -15,7 +15,9 @@ def main():
 
 
 def leerArchivo():
-    
+
+    #abrir el archivo en modo lectura y escritura
+
     with open('./Primer_Parcial_SuperMercado/sucursales.csv', mode='r', encoding='utf-8') as file:
         lector = csv.reader(file, delimiter=',')
 
