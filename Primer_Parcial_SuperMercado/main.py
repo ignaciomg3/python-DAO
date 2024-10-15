@@ -15,12 +15,19 @@ def main():
 
 
 def leerArchivo():
-    
+    with open('ruta', mode = 'r', encoding = 'utf-8') as file:
+        lector = csv.reader(file, delimiter = ',')
+        for row in lector:
+            numIteracion = lector.line_num
+            tipo = row[0]
+            tipo1 = row[0]
+        
     with open('./Primer_Parcial_SuperMercado/sucursales.csv', mode='r', encoding='utf-8') as file:
         lector = csv.reader(file, delimiter=',')
 
         #next(reader)# Skip the header row
         for row in lector:
+            
             tipoS = row[0]
             identif = row[1]
             superficie = row[2]
