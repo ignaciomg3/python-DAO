@@ -15,13 +15,9 @@ def main():
 
 
 def leerArchivo():
-    with open('ruta', mode = 'r', encoding = 'utf-8') as file:
-        lector = csv.reader(file, delimiter = ',')
-        for row in lector:
-            numIteracion = lector.line_num
-            tipo = row[0]
-            tipo1 = row[0]
-        
+
+    #abrir el archivo en modo lectura y escritura
+
     with open('./Primer_Parcial_SuperMercado/sucursales.csv', mode='r', encoding='utf-8') as file:
         lector = csv.reader(file, delimiter=',')
 
