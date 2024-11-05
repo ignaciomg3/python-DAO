@@ -1,0 +1,27 @@
+En la aplicaicón tendremos la capa de presentación, la de lógica de negocios, la de persistencia.
+
+Presentación: La interfaz del usuario.
+
+Lógica de Negocio: Contiene las reglas de negocios.
+
+Capa de persistencia: Contiene los datos.
+
+Por Ejemplo: un lector de código de barra en un supermercado puede ser una interfaz? si.
+
+Programación Orientada a Eventos (OED) : Programo según lo que va pasando.
+
+
+Capa Presentación: Guardo los datos y creo la clase alumno con los datos tomado de la pantalla.
+
+Capa de Negocio: EN esta capaa tengo las clases Alumno.py y ese archivo tiene la clase Alumno.
+La clase alumno tiene método constructor
+
+el archivo Alumno.py contiene: 
+#clase alumno
+crear(parametros){
+
+    InsertarAlumno(parametros)
+}
+
+La Capa Datos contiene un archivo AlumnoBD.py contiene:
+InsertarAlumno() será un método de la capa de DATOS  ( una carpeta llamada "Capa Datos" )
