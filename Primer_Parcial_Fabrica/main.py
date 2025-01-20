@@ -12,145 +12,35 @@
     cualquier otra tecla) Salir del programa.
 """
 
-
 import csv
-from clases import Mantenimiento, Preventivo, Correctivo, Maquina
-listaMantenimientos= []
-
+from clases import *
 def main():
+
+    ''' 
+    - Suma de gastos: que informe el total abonado por todo concepto en todos los mantenimientos registrados.
     
-    leerArchivo()
-    menuOpciones()
-
-
-def leerArchivo():
-    with open('./Primer_Parcial_Fabrica/mantenimientos.csv', mode='r', encoding='utf-8') as file:
-        csv_reader = csv.reader(file, delimiter=',')
-        for row in csv_reader:
-            
-            #print(row)  # Aquí puedes procesar cada fila como necesites
-            id_mantenimiento, fecha, nombre, importe, res_u_horas, importe_tecnico = row
- 
-            # Desempaqueta los valores de la fila en variables individuales.
-
-            #print(f"ID: {id_mantenimiento}, Fecha: {fecha}, Nombre: {nombre}, Costo: {importe}, resultado u horas: {res_u_horas}, importe_tecnico: {importe_tecnico}")
-            
-            # if id_mantenimiento == "1":
-            #     print("Preventivo ")
-            # elif id_mantenimiento == "2":
-            #     print("Correctivo") 
-            # else:
-            #     print("Error")
-
-            iteracion = csv_reader.line_num
-            #print(f"Número de iteración: {iteracion}")
-
-            # Crear una instancia de la clase importada y ejecutar alguna función
-            if id_mantenimiento == '1':
-                nuevoMantenimiento = Preventivo(id_mantenimiento, fecha, nombre, importe, res_u_horas, importe_tecnico)
-            else:
-                nuevoMantenimiento = Correctivo(id_mantenimiento, fecha, nombre, importe, res_u_horas, importe_tecnico)
-            
-            #print("Agregar a la lista..")
-            listaMantenimientos.append(nuevoMantenimiento)
-            #print("mantenimiento agregado")
-
-  # Asegúrate de reemplazar 'some_module' y 'SomeClass' con los nombres correctos
-
-def menuOpciones():
-    print(" ")
-    print("**************************** MENÚ DE OPCIONES ****************************")
-    print("a Suma de gastos")
-    print("b Cantidad de mantenimientos caros")
-    print("c Rotura más larga")
-    print("* Salir del programa")
-
-    opcion = input("Ingrese una opción: ")
-
-    if opcion == "a":
-        print("Opción a")
-        sumaGastos()
-        menuOpciones()
-
-    elif opcion == "b":
-        print("Opción b")
-        mantenimientosCaros()
-        menuOpciones()
-        
+    - Cantidad de mantenimientos caros: que informe el total de mantenimientos de cualquier 
+    tipo que hayan tenido un gasto total de más de  $10.000
+     
+     - Rotura más larga: que informe la fecha y el nombre del operario del mantenimiento correctivo de mayor duración
+    '''
+    m = Maquina()
+    m.cargar_datos()
+    m.__str__()
+    print(m)
     
-    elif opcion == "c":
-        print("Opción c")   
-        roturaMasLarga()
-        menuOpciones()
+    #PUNTO 1
+    suma = m.suma_Gastos()
+    print(f"la suma total de los gastos es: {suma}")
     
-    else:
-        print("Saliendo del programa...")
-        exit()  
+    #PUNTO 2
+    print (f"la cantidad de mantenimientos caros son: {m.cant_Mant_Caros()}")
 
-
-    
-def sumaGastos():
-    total = 0
+    #PUNTO 3
+    mant = m.rotura_Mas_Larga()
+    print(f"La rotura mas larga es: {mant.fecha} el operario es: {mant.operario} \n la cantidad de horas parada es: {mant.horasParada}")
     
     
-    for mantenimiento in listaMantenimientos:
-        print("Importe: ", mantenimiento.importe)
-        #print("Mantenimiento: ", mantenimiento)
-        importeInt = int(mantenimiento.importe)
-        total += importeInt
-        print("total: ", total)
-    print(f"El total abonado por todo concepto en todos los mantenimientos registrados es: {total}")
 
-def mantenimientosCaros():
-    cantMantenimientosCaros = 0
-    mantBaratos = 0
-    for mantenimiento in listaMantenimientos:
-        if (int(mantenimiento.importe) > 10000):
-            cantMantenimientosCaros += 1
-        else:
-            mantBaratos += 1
-    print(f"Mantenimientos de más de $10.000: {cantMantenimientosCaros}")
-    print(f"Mantenimientos menores a $10.000: {mantBaratos}")
-
-def roturaMasLarga():
-    
-    max_horas = 0
-    type(max_horas)
-    print(f"1 El tipo de dato de Max_Horas es: {type(max_horas)}")
-    print(f"2 El valor de Max_Horas es: {max_horas}")
-
-    esCorrectivo = False
-    for i, mantenimiento in enumerate(listaMantenimientos):
-        print(f"Iteración {i} ")
-        if isinstance(mantenimiento, Correctivo):
-            esCorrectivo = True
-            print("Es Correctivo") 
-            #print(f"Horas: ", mantenimiento.horas) 
-            #print(f"Horas Max: ", max_horas) 
-             # Imprimir el tipo de dato de mantenimiento.horas
-            print(f"3 El tipo de dato de mantenimiento.horas es: {type(mantenimiento.horas)}")
-            horasMant = int(mantenimiento.horas)
-            print(f"4 El tipo de dato de HorasMant es: {type(horasMant)}")
-            print(f"5 El tipo de dato de Max_Horas es: {type(max_horas)}")
-            print(f"*****************************************************")
- 
-            if horasMant > max_horas:
-                max_horas = horasMant
-                fecha = mantenimiento.fecha
-                operario = mantenimiento.operario
-            else:
-                print("no es mayor")
-        
-        else:
-            print("No es Correctivo")
-            print(f"{mantenimiento.tipoM}, es preventivo.")
-            print(f"*********************")
-
-    print(f"Cantidad maxima de horas: {max_horas}, La fecha {fecha} y el nombre del operario {operario} ")
- 
-    
 if __name__ == "__main__":
     main()
-
-
-    
